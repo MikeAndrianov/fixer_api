@@ -2,17 +2,11 @@ module FixerApi
   class Client
     class << self
       def get_rates_for_period(date_from, date_to, params = {})
-        date_from = date_from.to_s
-        date_to = date_to.to_s
-
-        # TODO
+        (date_from..date_to).map { |date| get_rates_for_day(date, params) }
       end
 
       def get_rates_for_day(date, params = {})
-        date = date.to_s
-
-        request = Request.new(date, params)
-        request.perform
+        Request.new(date.to_s, params).perform
       end
     end
   end
