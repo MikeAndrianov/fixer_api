@@ -1,0 +1,7 @@
+language: ruby
+before_script:
+script:
+  - bundle exec rspec --color
+
+rvm:
+  - 2.4.1

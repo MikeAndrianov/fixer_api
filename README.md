@@ -1,6 +1,8 @@
 # FixerApi
 Gem for fetching data from http://fixer.io/
 
+[![Build Status](https://travis-ci.org/MikeAndrianov/fixer_api.svg?branch=master)](https://travis-ci.org/MikeAndrianov/fixer_api)
+
 ## Usage
 ```ruby
   FixerApi::Client.get_rates_for_day(Date.today)
