@@ -10,7 +10,7 @@ module FixerApi
     def perform
       response = JSON(make_request)
 
-      check!(response.to_s)
+      check!(response)
     end
 
     private
@@ -25,7 +25,7 @@ module FixerApi
     end
 
     def check!(response)
-      fail ResponseError unless response.include?('rates')
+      raise ResponseError unless response.to_s.include?('rates')
 
       response
     end
