@@ -21,7 +21,8 @@ module FixerApi
 
     def url
       uri = URI.parse("#{FIXER_API_URL}/#{@path}")
-      uri.query = URI.encode_www_form(params) if @params.present?
+      uri.query = URI.encode_www_form(@params) if @params.present?
+      uri
     end
 
     def check!(response)
