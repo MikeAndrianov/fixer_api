@@ -6,6 +6,8 @@ module FixerApi
       end
 
       def get_rates_for_day(date, params = {})
+        return if date > Date.today
+
         Request.new(date.to_s, params).perform
       end
     end
