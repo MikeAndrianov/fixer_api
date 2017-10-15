@@ -17,6 +17,18 @@ RSpec.describe FixerApi::Client do
         expect(FixerApi::Request).to have_received(:new).with('2020-08-20', {})
         expect(request_instance).to have_received(:perform)
       end
+
+      context 'response failed' do
+        before do
+          allow(described_class).to receive(:sleep)
+          allow(request_instance).to receive(:perform).and_raise(FixerApi::ResponseError)
+        end
+
+        it 'waits and retries again 4 times' do
+          described_class.get_rates_for_day(date)
+          expect(FixerApi::Request).to have_received(:new).with('2020-08-20', {}).exactly(4).times
+        end
+      end
     end
 
     context 'with date more than today' do
